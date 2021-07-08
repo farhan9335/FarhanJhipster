@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-manager-heading" data-cy="ManagerCreateUpdateHeading" jhiTranslate="hclMonitorToolApp.manager.home.createOrEditLabel">
+        Create or edit a Manager
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hclMonitorToolApp.manager.managerId" for="field_managerId">Manager Id</label>
+          <input type="number" class="form-control" name="managerId" id="field_managerId" data-cy="managerId" formControlName="managerId" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hclMonitorToolApp.manager.managerName" for="field_managerName"
+            >Manager Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="managerName"
+            id="field_managerName"
+            data-cy="managerName"
+            formControlName="managerName"
+          />
+          <div *ngIf="editForm.get('managerName')!.invalid && (editForm.get('managerName')!.dirty || editForm.get('managerName')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('managerName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('managerName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hclMonitorToolApp.manager.level" for="field_level">Level</label>
+          <input type="text" class="form-control" name="level" id="field_level" data-cy="level" formControlName="level" />
+          <div *ngIf="editForm.get('level')!.invalid && (editForm.get('level')!.dirty || editForm.get('level')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('level')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('level')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 10 }"
+            >
+              This field cannot be longer than 10 characters.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

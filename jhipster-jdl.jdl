@@ -1,0 +1,45 @@
+
+
+
+
+entity Manager{
+    managerId Integer,
+    managerName String required maxlength(50),
+    level String required maxlength(10),
+}
+
+entity Employee{
+   employeeId Integer,
+   employeeName String required maxlength(50),
+   employeeSpecialization String
+}
+
+entity Project{
+
+   projectId Integer,
+   ProjectName String required maxlength(50),
+}
+
+entity ProjectActivityMaster{
+      projectActivityId Integer,
+      projectActivityCode String required,
+      Description String required maxlength(50)
+}
+
+entity ChangeRequestMaster{
+    changeRequestId Integer,
+    changeRequestCode String required maxlength(50),
+    projectActivityCode String required,
+}
+
+entity ActivityMaster{
+       activityMasterId Integer,
+       activity String required maxlength(250),
+       changeRequestCode String required maxlength(50),
+       projectActivityCode String required,
+       
+}
+
+relationship OneToMany{
+      Manager{employee} to Employee
+}

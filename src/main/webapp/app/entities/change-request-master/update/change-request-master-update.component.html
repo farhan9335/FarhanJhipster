@@ -1,0 +1,122 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-change-request-master-heading"
+        data-cy="ChangeRequestMasterCreateUpdateHeading"
+        jhiTranslate="hclMonitorToolApp.changeRequestMaster.home.createOrEditLabel"
+      >
+        Create or edit a Change Request Master
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="hclMonitorToolApp.changeRequestMaster.changeRequestId" for="field_changeRequestId"
+            >Change Request Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="changeRequestId"
+            id="field_changeRequestId"
+            data-cy="changeRequestId"
+            formControlName="changeRequestId"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="hclMonitorToolApp.changeRequestMaster.changeRequestCode"
+            for="field_changeRequestCode"
+            >Change Request Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="changeRequestCode"
+            id="field_changeRequestCode"
+            data-cy="changeRequestCode"
+            formControlName="changeRequestCode"
+          />
+          <div
+            *ngIf="
+              editForm.get('changeRequestCode')!.invalid &&
+              (editForm.get('changeRequestCode')!.dirty || editForm.get('changeRequestCode')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('changeRequestCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('changeRequestCode')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="hclMonitorToolApp.changeRequestMaster.projectActivityCode"
+            for="field_projectActivityCode"
+            >Project Activity Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="projectActivityCode"
+            id="field_projectActivityCode"
+            data-cy="projectActivityCode"
+            formControlName="projectActivityCode"
+          />
+          <div
+            *ngIf="
+              editForm.get('projectActivityCode')!.invalid &&
+              (editForm.get('projectActivityCode')!.dirty || editForm.get('projectActivityCode')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('projectActivityCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

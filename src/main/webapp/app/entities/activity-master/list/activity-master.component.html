@@ -1,0 +1,84 @@
+<div>
+  <h2 id="page-heading" data-cy="ActivityMasterHeading">
+    <span jhiTranslate="hclMonitorToolApp.activityMaster.home.title">Activity Masters</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hclMonitorToolApp.activityMaster.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-activity-master"
+        [routerLink]="['/activity-master/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hclMonitorToolApp.activityMaster.home.createLabel"> Create a new Activity Master </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="activityMasters?.length === 0">
+    <span jhiTranslate="hclMonitorToolApp.activityMaster.home.notFound">No activityMasters found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="activityMasters && activityMasters.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="hclMonitorToolApp.activityMaster.activityMasterId">Activity Master Id</span></th>
+          <th scope="col"><span jhiTranslate="hclMonitorToolApp.activityMaster.activity">Activity</span></th>
+          <th scope="col"><span jhiTranslate="hclMonitorToolApp.activityMaster.changeRequestCode">Change Request Code</span></th>
+          <th scope="col"><span jhiTranslate="hclMonitorToolApp.activityMaster.projectActivityCode">Project Activity Code</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let activityMaster of activityMasters; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/activity-master', activityMaster.id, 'view']">{{ activityMaster.id }}</a>
+          </td>
+          <td>{{ activityMaster.activityMasterId }}</td>
+          <td>{{ activityMaster.activity }}</td>
+          <td>{{ activityMaster.changeRequestCode }}</td>
+          <td>{{ activityMaster.projectActivityCode }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/activity-master', activityMaster.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/activity-master', activityMaster.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(activityMaster)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

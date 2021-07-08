@@ -1,0 +1,31 @@
+{
+  "name": "ProjectActivityMaster",
+  "fields": [
+    {
+      "fieldName": "projectActivityId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "projectActivityCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "project_activity_master",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210708155305"
+}

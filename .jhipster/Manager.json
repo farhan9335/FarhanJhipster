@@ -1,0 +1,39 @@
+{
+  "name": "Manager",
+  "fields": [
+    {
+      "fieldName": "managerId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "managerName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "level",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "10"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "employee",
+      "otherEntityRelationshipName": "manager",
+      "relationshipName": "employee"
+    }
+  ],
+  "entityTableName": "manager",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210708155302"
+}

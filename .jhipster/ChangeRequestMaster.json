@@ -1,0 +1,31 @@
+{
+  "name": "ChangeRequestMaster",
+  "fields": [
+    {
+      "fieldName": "changeRequestId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "changeRequestCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "projectActivityCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "change_request_master",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210708155306"
+}

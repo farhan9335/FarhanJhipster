@@ -1,0 +1,26 @@
+{
+  "hclMonitorToolApp": {
+    "projectActivityMaster": {
+      "home": {
+        "title": "Project Activity Masters",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Project Activity Master",
+        "createOrEditLabel": "Create or edit a Project Activity Master",
+        "notFound": "No Project Activity Masters found"
+      },
+      "created": "A new Project Activity Master is created with identifier {{ param }}",
+      "updated": "A Project Activity Master is updated with identifier {{ param }}",
+      "deleted": "A Project Activity Master is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Project Activity Master {{ id }}?"
+      },
+      "detail": {
+        "title": "Project Activity Master"
+      },
+      "id": "ID",
+      "projectActivityId": "Project Activity Id",
+      "projectActivityCode": "Project Activity Code",
+      "description": "Description"
+    }
+  }
+}
